@@ -35,7 +35,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     // reset state to tests
     state.answerCheated=false;
     state.optionClicked = false;
-    state.option = 0 ;
+    state.option = 0;
 
     // update the view
     disableNextButton();
@@ -48,6 +48,9 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     Log.e(TAG, "onRestart()");
 
     //TODO: falta implementacion
+
+
+
 
   }
 
@@ -81,6 +84,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     Log.e(TAG, "onOptionButtonClicked()");
 
     //TODO: falta implementacion
+    state.optionClicked = true;
 
     boolean isCorrect = model.isCorrectOption(option);
 
@@ -91,23 +95,30 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     } else {
       state.cheatEnabled=true;
     }
+
     enableNextButton();
     view.get().displayQuestion(state);
-
   }
 
   @Override
   public void onNextButtonClicked() {
     Log.e(TAG, "onNextButtonClicked()");
     //TODO: falta implementacion
+    model.updateQuizIndex();
+    state.optionClicked = false;
+    state.question = model.getQuestion();
+    state.option1 = model.getOption1();
+    state.option2 = model.getOption2();
+    state.option3 = model.getOption3();
 
-
+    view.get().resetReply();
+    disableNextButton();
+    view.get().displayQuestion(state);
   }
 
   @Override
   public void onCheatButtonClicked() {
     Log.e(TAG, "onCheatButtonClicked()");
-    view.get().navigateToCheatScreen();
 
     //TODO: falta implementacion
   }
