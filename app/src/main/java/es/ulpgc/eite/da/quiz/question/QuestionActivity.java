@@ -102,7 +102,6 @@ public class QuestionActivity
     }
   }
 
-
   public void onNextButtonClicked(View view) {
     presenter.onNextButtonClicked();
   }
@@ -115,7 +114,6 @@ public class QuestionActivity
     int option = Integer.valueOf((String) view.getTag());
     presenter.onOptionButtonClicked(option);
   }
-
 
   @Override
   public void injectPresenter(QuestionContract.Presenter presenter) {
