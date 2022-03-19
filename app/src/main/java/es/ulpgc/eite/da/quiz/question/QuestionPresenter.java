@@ -94,12 +94,14 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   public void onNextButtonClicked() {
     Log.e(TAG, "onNextButtonClicked()");
 
+
     //TODO: falta implementacion
   }
 
   @Override
   public void onCheatButtonClicked() {
     Log.e(TAG, "onCheatButtonClicked()");
+    view.get().navigateToCheatScreen();
 
     //TODO: falta implementacion
   }

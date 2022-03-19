@@ -2,6 +2,7 @@ package es.ulpgc.eite.da.quiz.question;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class QuestionActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.d(TAG, "onCreate()");
     setContentView(R.layout.activity_question);
 
     getSupportActionBar().setTitle(R.string.question_title);
@@ -63,7 +65,7 @@ public class QuestionActivity
   public void navigateToCheatScreen() {
 
     Intent intent = new Intent(this, CheatActivity.class);
-    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);
   }
 
@@ -110,7 +112,6 @@ public class QuestionActivity
   }
 
   public void onOptionButtonClicked(View view) {
-
     int option = Integer.valueOf((String) view.getTag());
     presenter.onOptionButtonClicked(option);
   }
