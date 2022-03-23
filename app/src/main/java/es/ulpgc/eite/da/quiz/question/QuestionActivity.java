@@ -63,7 +63,6 @@ public class QuestionActivity
 
   @Override
   public void navigateToCheatScreen() {
-
     Intent intent = new Intent(this, CheatActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);
@@ -71,7 +70,7 @@ public class QuestionActivity
 
   @Override
   public void displayQuestion(QuestionViewModel viewModel) {
-    //Log.e(TAG, "displayQuestion()");
+    Log.e(TAG, "displayQuestion()");
 
     // deal with the answer
     ((TextView) findViewById(R.id.questionTextView)).setText(viewModel.question);

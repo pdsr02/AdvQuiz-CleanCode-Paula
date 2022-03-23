@@ -34,7 +34,7 @@ public class CheatPresenter implements CheatContract.Presenter {
     // reset state to tests
     state.answerEnabled=true;
     state.answerCheated=false;
-    state.answer = null;
+    state.answer = "???";
 
     // update the view
     view.get().resetAnswer();
@@ -43,29 +43,24 @@ public class CheatPresenter implements CheatContract.Presenter {
   @Override
   public void onRestart() {
     Log.e(TAG, "onRestart()");
-
     //TODO: falta implementacion
+
   }
 
   @Override
   public void onResume() {
     Log.e(TAG, "onResume()");
-
     //TODO: falta implementacion
-
     // use passed state if is necessary
     QuestionToCheatState savedState = getStateFromQuestionScreen();
     if (savedState != null) {
-
       // fetch the model
 
       // update the state
-
+      state.answer = savedState.answer;
     }
-
     // update the view
-    view.get().displayAnswer(state);
-
+    //view.get().displayAnswer(state);
   }
 
   @Override
@@ -76,7 +71,6 @@ public class CheatPresenter implements CheatContract.Presenter {
   @Override
   public void onBackPressed() {
     Log.e(TAG, "onBackPressed()");
-
     //TODO: falta implementacion
 
   }
@@ -84,22 +78,31 @@ public class CheatPresenter implements CheatContract.Presenter {
   @Override
   public void onWarningButtonClicked(int option) {
     Log.e(TAG, "onWarningButtonClicked()");
-
     //TODO: falta implementacion
     //option=1 => yes, option=0 => no
-
+    if(option==1){
+      Log.e(TAG, "StateAnswer: "+ state.answer);
+      state.answerCheated = true;
+      state.answerEnabled = false;
+      view.get().displayAnswer(state);
+      CheatToQuestionState cheat = new CheatToQuestionState();
+      cheat.answerCheated = state.answerCheated ;
+    }else{
+      Log.e(TAG, "OnFinishCheat");
+      view.get().onFinish();
+    }
   }
 
   private void passStateToQuestionScreen(CheatToQuestionState state) {
-
     //TODO: falta implementacion
+    mediator.setCheatToQuestionState(state);
   }
 
   private QuestionToCheatState getStateFromQuestionScreen() {
-
     //TODO: falta implementacion
-
-    return null;
+    QuestionToCheatState answer = new QuestionToCheatState();
+    answer = mediator.getQuestionToCheatState();
+    return answer;
   }
 
   @Override

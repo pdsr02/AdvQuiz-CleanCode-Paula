@@ -1,6 +1,7 @@
 package es.ulpgc.eite.da.quiz.cheat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -69,7 +70,7 @@ public class CheatActivity
 
   @Override
   public void displayAnswer(CheatViewModel viewModel) {
-    //Log.e(TAG, "displayAnswer()");
+    Log.e(TAG, "displayAnswer()");
 
     // deal with the answer
     ((TextView) findViewById(R.id.answerTextView)).setText(viewModel.answer);
