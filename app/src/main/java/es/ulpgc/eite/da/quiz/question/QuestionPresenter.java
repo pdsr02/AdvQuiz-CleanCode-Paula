@@ -78,6 +78,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     Log.e(TAG, "onOptionButtonClicked()");
     //TODO: falta implementacion
     state.optionClicked = true;
+    state.option=option;
 
     boolean isCorrect = model.isCorrectOption(option);
 
