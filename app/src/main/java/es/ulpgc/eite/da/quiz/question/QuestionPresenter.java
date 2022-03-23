@@ -47,22 +47,20 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   public void onRestart() {
     Log.e(TAG, "onRestart()");
     //TODO: falta implementacion
-
+    boolean isCorrect = model.isCorrectOption(state.option);
+    view.get().updateReply(isCorrect);
   }
-
 
   @Override
   public void onResume() {
     Log.e(TAG, "onResume()");
     //TODO: falta implementacion
     // use passed state if is necessary
-
     CheatToQuestionState savedState = getStateFromCheatScreen();
     if (savedState != null) {
       // fetch the model
       if(savedState.answerCheated){
-
-
+        enableNextButton();
       }
     }
     // update the view

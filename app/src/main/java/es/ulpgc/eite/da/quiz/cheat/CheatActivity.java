@@ -43,7 +43,6 @@ public class CheatActivity
   @Override
   protected void onResume() {
     super.onResume();
-
     // load the answer
     presenter.onResume();
   }
@@ -51,7 +50,6 @@ public class CheatActivity
   @Override
   public void onBackPressed() {
     super.onBackPressed();
-
     presenter.onBackPressed();
   }
 
@@ -64,7 +62,6 @@ public class CheatActivity
   @Override
   protected void onDestroy() {
     super.onDestroy();
-
     presenter.onDestroy();
   }
 
@@ -86,7 +83,6 @@ public class CheatActivity
 
 
   public void onWarningButtonClicked(View view) {
-
     int option = Integer.valueOf((String) view.getTag());
     presenter.onWarningButtonClicked(option);
   }

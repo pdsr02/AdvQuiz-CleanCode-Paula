@@ -60,7 +60,9 @@ public class CheatPresenter implements CheatContract.Presenter {
       state.answer = savedState.answer;
     }
     // update the view
-    //view.get().displayAnswer(state);
+    if(state.answerCheated) {
+      view.get().displayAnswer(state);
+    }
   }
 
   @Override
@@ -87,6 +89,7 @@ public class CheatPresenter implements CheatContract.Presenter {
       view.get().displayAnswer(state);
       CheatToQuestionState cheat = new CheatToQuestionState();
       cheat.answerCheated = state.answerCheated ;
+      passStateToQuestionScreen(cheat);
     }else{
       Log.e(TAG, "OnFinishCheat");
       view.get().onFinish();
