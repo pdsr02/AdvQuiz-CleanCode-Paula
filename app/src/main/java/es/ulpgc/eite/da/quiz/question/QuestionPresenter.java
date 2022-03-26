@@ -47,8 +47,13 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   public void onRestart() {
     Log.e(TAG, "onRestart()");
     //TODO: falta implementacion
-    boolean isCorrect = model.isCorrectOption(state.option);
-    view.get().updateReply(isCorrect);
+    Log.e(TAG, "stateOptionClicked" + state.optionClicked);
+    if(state.optionClicked) {
+      boolean isCorrect = model.isCorrectOption(state.option);
+      view.get().updateReply(isCorrect);
+    } else{
+        view.get().resetReply();
+    }
   }
 
   @Override
@@ -59,8 +64,14 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     CheatToQuestionState savedState = getStateFromCheatScreen();
     if (savedState != null) {
       // fetch the model
-      if(savedState.answerCheated){
-        enableNextButton();
+      state.answerCheated=savedState.answerCheated;
+      Log.e(TAG, "stateAnswerCheat" + state.answerCheated );
+      if(state.answerCheated){
+        if(!model.hasQuizFinished()) {
+          onNextButtonClicked();
+        }else{
+          enableNextButton();
+        }
       }
     }
     // update the view
@@ -79,9 +90,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     //TODO: falta implementacion
     state.optionClicked = true;
     state.option=option;
-
     boolean isCorrect = model.isCorrectOption(option);
-
     view.get().updateReply(isCorrect);
 
     if(isCorrect) {

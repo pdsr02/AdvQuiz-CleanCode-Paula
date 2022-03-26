@@ -58,7 +58,6 @@ public class QuestionModel implements QuestionContract.Model {
     if(quizIndex+4 < quizArray.length-1) {
       return false;
     }
-
     return true;
   }
 

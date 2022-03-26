@@ -1,5 +1,6 @@
 package es.ulpgc.eite.da.quiz.cheat;
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
@@ -74,7 +75,11 @@ public class CheatPresenter implements CheatContract.Presenter {
   public void onBackPressed() {
     Log.e(TAG, "onBackPressed()");
     //TODO: falta implementacion
+    CheatToQuestionState cheat = new CheatToQuestionState();
+    cheat.answerCheated = state.answerCheated;
+    passStateToQuestionScreen(cheat);
 
+    view.get().onFinish();
   }
 
   @Override
@@ -87,9 +92,6 @@ public class CheatPresenter implements CheatContract.Presenter {
       state.answerCheated = true;
       state.answerEnabled = false;
       view.get().displayAnswer(state);
-      CheatToQuestionState cheat = new CheatToQuestionState();
-      cheat.answerCheated = state.answerCheated ;
-      passStateToQuestionScreen(cheat);
     }else{
       Log.e(TAG, "OnFinishCheat");
       view.get().onFinish();
@@ -103,8 +105,7 @@ public class CheatPresenter implements CheatContract.Presenter {
 
   private QuestionToCheatState getStateFromQuestionScreen() {
     //TODO: falta implementacion
-    QuestionToCheatState answer = new QuestionToCheatState();
-    answer = mediator.getQuestionToCheatState();
+    QuestionToCheatState answer = mediator.getQuestionToCheatState();
     return answer;
   }
 
